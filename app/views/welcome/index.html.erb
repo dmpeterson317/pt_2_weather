@@ -1,0 +1,25 @@
+<h1>Weather Lookup</h1>
+
+<div>
+<p>Enter your zipcode:</p>
+
+<%= form_tag index_path do %>
+	<%= text_field_tag :zipcode, nil, placeholder: "Zipcode" %> <br/>
+	<%= submit_tag "Check Weather" %>
+<% end %>
+</div>
+
+</br>
+
+<div>
+	<% if @location.blank? == false %>
+		The weather for <%= @location %> is ... <br/>
+		Temperature: <%= @temp %> <br/>
+		Description: <%= @weather_words %> <br/>
+		Cloud Cover: <%= @cloudiness %> <br/>
+		Windiness: <%= @windiness %> <br/>
+		<img src="http://openweathermap.org/img/w/<%= @weather_icon %>.png" width="300px" height="300px" />
+	<% elsif @status == "404" %>
+		Error: <%= @error %> <br/>
+	<% end %>
+</div>
